@@ -1,12 +1,13 @@
+import Weather from "./modules/weather";
 import "./style.css";
 
-let worldView = "hello";
+const searchField = document.querySelector("#searchWeather");
+searchField.addEventListener("input", () => {
+  if (searchField.value.length < 2) return;
+  Weather.search(searchField.value);
+});
 
-if (worldView === "hello") {
-  worldView = "world";
-}
-const worlds = { world1: "hello", world2: "world", world3: "YEAH!" };
-console.log(worlds);
-
-console.log(`Hello ${worldView}`);
-console.log("w");
+const searchButton = document.querySelector(".sendSearch");
+searchButton.addEventListener("click", () => {
+  Weather.current(searchField.value);
+});
