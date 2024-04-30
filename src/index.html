@@ -6,7 +6,34 @@
     <title>Template</title>
   </head>
   <body>
-    <input type="search" name="searchWeather" id="searchWeather">
-    <button class="sendSearch">Search</button>
+    <div class="blur"></div>
+    <div class="header">
+      <div class="searchContainer"><input type="search" name="findLocation" id="findLocation" autocomplete="off"></div>
+    </div>
+    <div class="main">
+      <div class="dailyInfo">
+        <div class="locationInfo">
+          <h1 class="cityName"></h1>
+          <h2 class="regionCountryName"></h2>
+          <div class="dateInfo"></div>
+        </div>
+        <div class="conditionInfo">
+          <img>
+          <h2></h2>
+        </div>
+      </div>
+      <div class="dailyTemp">
+        <h1 class="tempNow"></h1>
+        <div class="tempExtremes">
+          <h3 class="tempHigh"></h3>
+          <h3 class="tempSeparator">/</h3>
+          <h3 class="tempLow"></h3>
+        </div>
+      </div>
+    </div>
+    <div class="forecast">
+      <div class="forecastSelect"></div>
+      <div class="forecastDisplay"></div>
+    </div>
   </body>
 </html>

@@ -1,9 +1,12 @@
+import UI from "./ui";
+
 const Weather = (() => {
   let location = "egersund";
   let currentWeather = {};
   const fetchTypes = {
     current: "current.json",
     search: "search.json",
+    forecast: "forecast.json",
   };
   const acceptedData = [
     "name",
@@ -18,7 +21,23 @@ const Weather = (() => {
     "gust_kph",
     "gust_mph",
     "is_day",
+    "maxtemp_c",
+    "maxtemp_f",
+    "mintemp_c",
+    "mintemp_f",
+    "sunset",
+    "sunrise",
+    "moonset",
+    "moonrise",
+    "avgtemp_c",
+    "avgtemp_f",
+    "daily_chance_of_rain",
+    "maxwind_kph",
+    "maxwind_mph",
+    "condition",
   ];
+
+  const uiController = new UI();
 
   // Sets location for fetching
   function setLocation(newLocation) {
@@ -59,11 +78,9 @@ const Weather = (() => {
   // Gets and displays the current weather
   async function current() {
     const allData = await fetchData(fetchTypes.current, location);
-    console.log(allData);
     currentWeather = mergeObjectsInArray(
       await dataStripper([allData.current, allData.location]),
     );
-    console.log(currentWeather);
     return currentWeather;
   }
 
@@ -76,7 +93,38 @@ const Weather = (() => {
     return strippedData;
   }
 
-  return { current, setLocation, search };
+  // New stripping method for forecast data
+  async function stripForecast(data) {
+    const newData = {
+      hour: await dataStripper(data.hour),
+      date: data.date,
+    };
+    // Loops over all objects and checks for acceptable keys
+    Object.keys(data).forEach((key) => {
+      Object.keys(data[key]).forEach((entry) => {
+        if (acceptedData.includes(entry)) newData[entry] = data[key][entry];
+      });
+    });
+    return newData;
+  }
+
+  async function forecast() {
+    const allData = await fetchData(fetchTypes.forecast, `${location}&days=7`);
+    const forecastDays = allData.forecast.forecastday;
+    const strippedDays = await Promise.all(
+      forecastDays.map((day) => stripForecast(day)),
+    );
+    return strippedDays;
+  }
+
+  async function getWeather() {
+    const currentData = await current();
+    const forecastData = await forecast();
+
+    uiController.updateUI(currentData, forecastData);
+  }
+
+  return { current, search, forecast, getWeather };
 })();
 
 export default Weather;

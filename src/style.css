@@ -1,4 +1,155 @@
-div {
-  color: orange;
-  font-size: 5rem;
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  color: white;
+  font-family: 'creato display';
+}
+
+@font-face {
+  font-family: 'creato display';
+  src: url("./fonts/CreatoDisplay-Light.otf");
+}
+
+@font-face {
+  font-family: 'creato extra light';
+  src: url("./fonts/CreatoDisplay-Thin.otf");
+}
+
+body {
+  height: 100dvh;
+  background-color: rgb(40, 40, 40);
+  display: grid;
+  grid-template-rows: 75px repeat(2, 1fr);
+  background-image: url("./img/background.jpg");
+  background-size: cover;
+  padding: 3rem 15%;
+  gap: 5px;
+}
+
+.blur {
+  position: absolute;
+  height: 100dvh;
+  width: 100dvw;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(20px);
+  background-color: rgba(100, 100, 100, 0.2);
+
+}
+
+.dailyTemp,
+.dailyInfo,
+.forecast,
+.header {
+  backdrop-filter: blur(10px);
+  display: grid;
+  border-radius: 5px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.main {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+/* HEADER */
+.header {
+  padding: 1rem;
+}
+
+.searchContainer {
+  border-bottom: 1px solid white;
+  padding: 5px;
+}
+
+#findLocation {
+  background: none;
+  background-image: url("./img/search.svg");
+  background-size: 25px;
+  background-position: left;
+  background-repeat: no-repeat;
+  border: none;
+  height: 25px;
+  font-size: 20px;
+  text-align: center;
+  width: 300px;
+}
+
+#findLocation:focus {
+  outline: none;
+}
+
+#findLocation::-webkit-search-cancel-button{
+  -webkit-appearance: none;
+}
+
+/* END HEADER */
+
+/* MAIN */
+
+.dailyTemp {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-self: flex-end;
+  justify-content: space-evenly;
+}
+
+.tempNow {
+  font-size: 14rem;
+  font-weight: 100;
+  font-family: "creato extra light";
+  height: min-content;
+}
+
+.tempExtremes {
+  display: flex;
+  gap: 1rem;
+  font-size: 4.5rem;
+  font-weight: 100;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.tempExtremes>h3 {
+  font-family: "creato extra light";
+}
+
+.tempLow {
+  color: rgb(22, 94, 177);
+}
+
+.dailyInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.dateInfo {
+  font-size: 24px;
+}
+
+.conditionInfo {
+  font-size: 32px;
+  display: grid;
+}
+
+.conditionInfo>img {
+  height: 128px;
+  width: 128px;
+}
+
+.cityName {
+  font-size: 6rem;
 }
