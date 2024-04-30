@@ -4,6 +4,8 @@
   box-sizing: border-box;
   color: white;
   font-family: 'creato display';
+  background: none;
+  border: none;
 }
 
 @font-face {
@@ -23,8 +25,8 @@ body {
   grid-template-rows: 75px repeat(2, 1fr);
   background-image: url("./img/background.jpg");
   background-size: cover;
-  padding: 3rem 15%;
-  gap: 5px;
+  padding: 1rem 15%;
+  gap: 15px;
 }
 
 .blur {
@@ -153,3 +155,29 @@ body {
 .cityName {
   font-size: 6rem;
 }
+
+/* FORECAST */
+.forecast {
+  grid-template-rows: 50px 1fr;
+}
+
+.forecastSelect {
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.forecastSelect>button {
+  width: 100px;
+  font-size: 2rem;
+  color: lightgray;
+  height: 100%;
+  transition: all 0.2s;
+}
+
+.forecastSelect>button:hover {
+  color: white;
+  cursor: pointer;
+}
+/* FORECAST END */
