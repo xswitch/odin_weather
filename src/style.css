@@ -159,6 +159,7 @@ body {
 /* FORECAST */
 .forecast {
   grid-template-rows: 50px 1fr;
+  align-self: flex-end;
 }
 
 .forecastSelect {
@@ -179,5 +180,44 @@ body {
 .forecastSelect>button:hover {
   color: white;
   cursor: pointer;
+}
+
+.forecastSelect>button.selected {
+  border-bottom: 2px solid white;
+  color: white;
+}
+
+.hourlyDisplay {
+  overflow: hidden;
+  display: grid;
+  grid-auto-columns: 100px;
+  gap: 50px;
+  grid-auto-flow: column;
+  justify-content: flex-start;
+  align-self: flex-start;
+  padding: 1rem 0;
+  min-height: 214px;
+}
+
+.hourCard {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardTime {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.cardCondition {
+  width: 100px;
+}
+
+.cardTemp {
+  font-size: 64px;
+  font-weight: 600;
 }
 /* FORECAST END */

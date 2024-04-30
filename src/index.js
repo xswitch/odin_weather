@@ -10,6 +10,9 @@ searchField.addEventListener("input", () => {
 searchField.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     Weather.getWeather();
+    Weather.getHourly().then((data) => {
+      Weather.uiController.createHourly(data);
+    });
     e.preventDefault();
   }
 });

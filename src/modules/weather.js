@@ -124,7 +124,13 @@ const Weather = (() => {
     uiController.updateUI(currentData, forecastData);
   }
 
-  return { current, search, forecast, getWeather };
+  async function getHourly() {
+    const data = await forecast();
+    const hours = data[0].hour;
+    return hours;
+  }
+
+  return { current, search, forecast, getWeather, getHourly, uiController };
 })();
 
 export default Weather;

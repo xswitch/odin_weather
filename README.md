@@ -19,7 +19,4 @@ TODO
 >> Show current
 >>> on click choose that one, on enter choose top one
 
-
-> Create displays for all current info
-> Style all current info
 > Send half for forecast/ hourly / daily / details and a more menu
