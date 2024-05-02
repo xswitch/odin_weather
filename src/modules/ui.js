@@ -4,6 +4,16 @@ import Weather from "./weather";
 class UI {
   todaysDate = new Date();
 
+  weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
   activeTab;
 
   constructor() {
@@ -93,9 +103,25 @@ class UI {
 
   dailyCard(dayData) {
     console.log(dayData);
+    const dayDate = new Date(dayData.date);
     const card = new El("div", {
       classes: "dailyCard",
       parent: this.forecastDisplay,
+    }).element;
+    const cardDate = new El("div", {
+      classes: "dailyTime",
+      parent: card,
+      text: this.weekday[dayDate.getDay()],
+    });
+    const cardCondition = new El("img", {
+      classes: "dailyCondition",
+      parent: card,
+    });
+    cardCondition.element.src = dayData.condition.icon;
+    const temp = new El("div", {
+      classes: "dailyTemp",
+      parent: card,
+      text: `${Math.round(dayData.maxtemp_c)}° / ${Math.round(dayData.mintemp_c)}°`,
     });
   }
 
