@@ -3,6 +3,8 @@ import UI from "./ui";
 const Weather = (() => {
   let location = "egersund";
   let currentWeather = {};
+  let forecastWeather = {};
+  let hourly;
   const fetchTypes = {
     current: "current.json",
     search: "search.json",
@@ -118,21 +120,35 @@ const Weather = (() => {
   }
 
   async function getHourly() {
-    const data = await forecast();
+    const data = forecastWeather;
     const hours = data[0].hour;
     return hours;
   }
 
   async function getWeather() {
-    const currentData = await current();
-    const forecastData = await forecast();
-    const hourly = await getHourly();
+    currentWeather = await current();
+    forecastWeather = await forecast();
+    hourly = await getHourly();
 
-    uiController.updateUI(currentData, forecastData);
+    console.log(hourly);
+
+    uiController.updateUI(currentWeather, forecastWeather);
     uiController.createHourly(hourly);
   }
 
-  return { current, search, forecast, getWeather, getHourly, uiController };
+  function getData() {
+    return { forecastWeather, currentWeather, hourly };
+  }
+
+  return {
+    current,
+    search,
+    forecast,
+    getWeather,
+    getHourly,
+    getData,
+    uiController,
+  };
 })();
 
 export default Weather;

@@ -27,13 +27,7 @@ class UI {
     [this.hourlyButton, this.dailyButton, this.detailsButton].forEach(
       (button) => {
         button.addEventListener("click", (e) => {
-          if (e.target !== this.activeTab) {
-            button.classList.add("selected");
-            this.activeTab.classList.remove("selected");
-            this.activeTab = button;
-            this.clearForecastDisplay();
-            this.changeTab(button);
-          }
+          this.changeTab(button);
         });
       },
     );
@@ -42,20 +36,29 @@ class UI {
   }
 
   changeTab(button) {
-    console.log(button.textContent);
+    if (button === this.activeTab) return;
+    this.activeTab.classList.remove("selected");
+    this.activeTab = button;
+    this.activeTab.classList.add("selected");
+    this.clearForecastDisplay();
     switch (button.textContent) {
       case "Hourly":
         console.log(button.textContent);
-        Weather.getHourly().then((data) => this.createHourly(data));
+        this.createHourly(Weather.getData().hourly);
         break;
-
+      case "Daily":
+        console.log("Daily");
+        this.createDaily();
+        break;
+      case "Details":
+        console.log("Details");
+        break;
       default:
         break;
     }
   }
 
   updateUI(currentData, forecastData) {
-    console.log(currentData, forecastData);
     this.cityName.textContent = currentData.name;
     this.regionCountryName.textContent = `${currentData.region}, ${currentData.country}`;
     this.currentDate.textContent = `${this.todaysDate.toLocaleDateString()}`;
@@ -72,8 +75,7 @@ class UI {
     }
   }
 
-  createHourly(data) {
-    console.log(data);
+  async createHourly(data) {
     this.clearForecastDisplay();
     data.forEach((hour, index) => {
       if (index < this.todaysDate.getHours()) return;
