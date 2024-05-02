@@ -36,21 +36,20 @@ class UI {
   changeTab(button, force = false) {
     if (button === this.activeTab && force === false) return;
     if (this.activeTab === undefined) this.activeTab = button;
+    this.forecastDisplay.classList.remove(this.forecastDisplay.classList[1]);
+    this.forecastDisplay.classList.add(button.textContent.toLowerCase());
     this.activeTab.classList.remove("selected");
     this.activeTab = button;
     this.activeTab.classList.add("selected");
     this.clearForecastDisplay();
     switch (button.textContent) {
       case "Hourly":
-        console.log("called");
         this.createHourly(Weather.getData().hourly);
         break;
       case "Daily":
-        console.log("Daily");
-        this.createDaily(Weather.getData());
+        this.createDaily(Weather.getData().forecastWeather);
         break;
       case "Details":
-        console.log("Details");
         break;
       default:
         break;
@@ -86,7 +85,19 @@ class UI {
     });
   }
 
-  createDaily(data) {}
+  createDaily(data) {
+    data.forEach((day) => {
+      this.dailyCard(day);
+    });
+  }
+
+  dailyCard(dayData) {
+    console.log(dayData);
+    const card = new El("div", {
+      classes: "dailyCard",
+      parent: this.forecastDisplay,
+    });
+  }
 
   hourlyCard(hourData, time) {
     const card = new El("div", {

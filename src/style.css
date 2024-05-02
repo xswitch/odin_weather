@@ -188,7 +188,7 @@ body {
   color: white;
 }
 
-.hourlyDisplay {
+.forecastDisplay.hourly {
   overflow: hidden;
   display: grid;
   grid-auto-columns: 100px;

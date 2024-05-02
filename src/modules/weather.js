@@ -129,9 +129,6 @@ const Weather = (() => {
     currentWeather = await current();
     forecastWeather = await forecast();
     hourly = await getHourly();
-
-    console.log(hourly);
-
     uiController.updateUI(currentWeather, forecastWeather);
     uiController.changeTab(uiController.hourlyButton, true);
   }
