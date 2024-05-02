@@ -31,24 +31,23 @@ class UI {
         });
       },
     );
-
-    this.activeTab = this.hourlyButton;
   }
 
-  changeTab(button) {
-    if (button === this.activeTab) return;
+  changeTab(button, force = false) {
+    if (button === this.activeTab && force === false) return;
+    if (this.activeTab === undefined) this.activeTab = button;
     this.activeTab.classList.remove("selected");
     this.activeTab = button;
     this.activeTab.classList.add("selected");
     this.clearForecastDisplay();
     switch (button.textContent) {
       case "Hourly":
-        console.log(button.textContent);
+        console.log("called");
         this.createHourly(Weather.getData().hourly);
         break;
       case "Daily":
         console.log("Daily");
-        this.createDaily();
+        this.createDaily(Weather.getData());
         break;
       case "Details":
         console.log("Details");
@@ -75,7 +74,7 @@ class UI {
     }
   }
 
-  async createHourly(data) {
+  createHourly(data) {
     this.clearForecastDisplay();
     data.forEach((hour, index) => {
       if (index < this.todaysDate.getHours()) return;

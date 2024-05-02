@@ -133,7 +133,7 @@ const Weather = (() => {
     console.log(hourly);
 
     uiController.updateUI(currentWeather, forecastWeather);
-    uiController.createHourly(hourly);
+    uiController.changeTab(uiController.hourlyButton, true);
   }
 
   function getData() {
