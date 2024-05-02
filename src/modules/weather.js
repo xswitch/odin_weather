@@ -117,17 +117,19 @@ const Weather = (() => {
     return strippedDays;
   }
 
-  async function getWeather() {
-    const currentData = await current();
-    const forecastData = await forecast();
-
-    uiController.updateUI(currentData, forecastData);
-  }
-
   async function getHourly() {
     const data = await forecast();
     const hours = data[0].hour;
     return hours;
+  }
+
+  async function getWeather() {
+    const currentData = await current();
+    const forecastData = await forecast();
+    const hourly = await getHourly();
+
+    uiController.updateUI(currentData, forecastData);
+    uiController.createHourly(hourly);
   }
 
   return { current, search, forecast, getWeather, getHourly, uiController };

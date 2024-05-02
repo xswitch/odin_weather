@@ -3,6 +3,8 @@ import El from "./createEl";
 class UI {
   todaysDate = new Date();
 
+  activeTab;
+
   constructor() {
     this.cityName = document.querySelector(".locationInfo>.cityName");
     this.regionCountryName = document.querySelector(
@@ -20,6 +22,21 @@ class UI {
     this.hourlyButton = document.querySelector(".hourlyButton");
     this.dailyButton = document.querySelector(".dailyButton");
     this.detailsButton = document.querySelector(".detailsButton");
+
+    [this.hourlyButton, this.dailyButton, this.detailsButton].forEach(
+      (button) => {
+        button.addEventListener("click", (e) => {
+          if (e.target !== this.activeTab) {
+            button.classList.add("selected");
+            this.activeTab.classList.remove("selected");
+            this.activeTab = button;
+            this.clearForecastDisplay();
+          }
+        });
+      },
+    );
+
+    this.activeTab = this.hourlyButton;
   }
 
   updateUI(currentData, forecastData) {
@@ -34,13 +51,26 @@ class UI {
     this.currentExtremesLow.textContent = `${Math.round(forecastData[0].mintemp_c)}°`;
   }
 
+  clearForecastDisplay() {
+    while (this.forecastDisplay.firstChild) {
+      this.forecastDisplay.removeChild(this.forecastDisplay.lastChild);
+    }
+  }
+
   createHourly(data) {
     console.log(data);
+    this.clearForecastDisplay();
     data.forEach((hour, index) => {
-      if (index + 1 < this.todaysDate.getHours()) return;
-      this.hourlyCard(hour, this.indexToTime(index));
+      if (index < this.todaysDate.getHours()) return;
+      if (index === this.todaysDate.getHours()) {
+        this.hourlyCard(hour, "NOW");
+      } else {
+        this.hourlyCard(hour, this.indexToTime(index));
+      }
     });
   }
+
+  createDaily(data) {}
 
   hourlyCard(hourData, time) {
     const card = new El("div", {
@@ -65,7 +95,7 @@ class UI {
   }
 
   indexToTime(index) {
-    return String(index + 1).length === 1 ? `0${index}:00` : `${index}:00`;
+    return String(index).length === 1 ? `0${index}:00` : `${index}:00`;
   }
 }
 

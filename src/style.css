@@ -175,6 +175,7 @@ body {
   color: lightgray;
   height: 100%;
   transition: all 0.2s;
+  border-bottom: 2px solid transparent;
 }
 
 .forecastSelect>button:hover {
@@ -209,7 +210,7 @@ body {
 
 .cardTime {
   font-size: 32px;
-  font-weight: 600;
+  font-weight: 200;
 }
 
 .cardCondition {
@@ -218,6 +219,6 @@ body {
 
 .cardTemp {
   font-size: 64px;
-  font-weight: 600;
+  font-weight: 400;
 }
 /* FORECAST END */
