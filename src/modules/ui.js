@@ -1,4 +1,5 @@
 import El from "./createEl";
+import Weather from "./weather";
 
 class UI {
   todaysDate = new Date();
@@ -31,12 +32,26 @@ class UI {
             this.activeTab.classList.remove("selected");
             this.activeTab = button;
             this.clearForecastDisplay();
+            this.changeTab(button);
           }
         });
       },
     );
 
     this.activeTab = this.hourlyButton;
+  }
+
+  changeTab(button) {
+    console.log(button.textContent);
+    switch (button.textContent) {
+      case "Hourly":
+        console.log(button.textContent);
+        Weather.getHourly().then((data) => this.createHourly(data));
+        break;
+
+      default:
+        break;
+    }
   }
 
   updateUI(currentData, forecastData) {
