@@ -118,7 +118,6 @@ class UI {
   }
 
   dailyCard(dayData) {
-    console.log(dayData);
     const dayDate = new Date(dayData.date);
     const card = new El("div", {
       classes: "dailyCard",
@@ -138,6 +137,9 @@ class UI {
       classes: "dailyTemp",
       parent: card,
       text: `${Math.round(dayData.maxtemp_c)}° / ${Math.round(dayData.mintemp_c)}°`,
+    });
+    card.addEventListener("click", () => {
+      console.log(dayData);
     });
   }
 
