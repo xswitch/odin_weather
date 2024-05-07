@@ -70,6 +70,7 @@ class UI {
     switch (button.textContent) {
       case "Hourly":
         this.createHourly(Weather.getData().hourly);
+        console.log(Weather.getData());
         break;
       case "Daily":
         this.createDaily(Weather.getData().forecastWeather);

@@ -121,7 +121,8 @@ const Weather = (() => {
 
   async function getHourly() {
     const data = forecastWeather;
-    const hours = data[0].hour;
+    let hours = data[0].hour;
+    hours = hours.concat(data[1].hour);
     return hours;
   }
 

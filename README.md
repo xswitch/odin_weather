@@ -20,6 +20,10 @@ Get 24 hours in hourly, so get from next day whatever's missing
 check length of array and subtract 23 with it.(23-array.length)
 Slice next day array from 0 to result
 
+join today and tomorrow instead of just today when getting hourly.
+use current date.getHour() and skip anything with an index lower than current hour in array
+if current hour + index > 24 subtract 24 from text instead of showing 25:00
+
 
 Make days clickable, to get more info
 Could do the same with every hour of current day.
