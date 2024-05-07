@@ -1,4 +1,5 @@
 import El from "./createEl";
+import Weather from "./weather";
 
 const searchList = (() => {
   const listContainer = document.querySelector(".searchList");
@@ -8,6 +9,12 @@ const searchList = (() => {
     const { y, height, width } = searchField.getBoundingClientRect();
     listContainer.style.top = `${y + height + 5}px`;
     listContainer.style.width = `${width}px`;
+  }
+
+  function clearList() {
+    while (listContainer.firstChild) {
+      listContainer.removeChild(listContainer.lastChild);
+    }
   }
 
   function addEntry(entryData) {
@@ -26,12 +33,12 @@ const searchList = (() => {
       parent: card,
       text: `${entryData.region}, ${entryData.country}`,
     });
-  }
-
-  function clearList() {
-    while (listContainer.firstChild) {
-      listContainer.removeChild(listContainer.lastChild);
-    }
+    card.addEventListener("click", () => {
+      Weather.setLocation(entryData.name);
+      Weather.getWeather();
+      searchField.value = entryData.name;
+      clearList();
+    });
   }
 
   function update(list) {

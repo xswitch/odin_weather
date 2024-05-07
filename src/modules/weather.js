@@ -145,6 +145,7 @@ const Weather = (() => {
     getWeather,
     getHourly,
     getData,
+    setLocation,
     uiController,
   };
 })();
