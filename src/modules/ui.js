@@ -70,7 +70,6 @@ class UI {
     switch (button.textContent) {
       case "Hourly":
         this.createHourly(Weather.getData().hourly);
-        console.log(Weather.getData());
         break;
       case "Daily":
         this.createDaily(Weather.getData().forecastWeather);
@@ -103,6 +102,7 @@ class UI {
     this.clearForecastDisplay();
     data.forEach((hour, index) => {
       if (index < this.todaysDate.getHours()) return;
+      if (index - this.todaysDate.getHours() > 24) return;
       if (index === this.todaysDate.getHours()) {
         this.hourlyCard(hour, "NOW");
       } else {
@@ -164,6 +164,9 @@ class UI {
   }
 
   indexToTime(index) {
+    if (index > 23) {
+      index -= 24;
+    }
     return String(index).length === 1 ? `0${index}:00` : `${index}:00`;
   }
 }
