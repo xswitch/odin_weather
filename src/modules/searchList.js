@@ -1,15 +1,31 @@
+import El from "./createEl";
+
 const searchList = (() => {
   const listContainer = document.querySelector(".searchList");
   const searchField = document.querySelector("#findLocation");
 
   function updatePosition() {
-    const { y, height } = searchField.getBoundingClientRect();
-    listContainer.style.top = `${y + height}px`;
+    const { y, height, width } = searchField.getBoundingClientRect();
+    listContainer.style.top = `${y + height + 5}px`;
+    listContainer.style.width = `${width}px`;
   }
 
-  function update(list) {}
+  function addEntry(entryData) {
+    const card = new El("div", {
+      classes: "searchResult",
+      parent: listContainer,
+    });
+  }
 
-  return { updatePosition };
+  function clearList() {}
+
+  function update(list) {
+    list.forEach((entry) => {
+      addEntry(entry);
+    });
+  }
+
+  return { updatePosition, update };
 })();
 
 export default searchList;

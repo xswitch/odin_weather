@@ -5,8 +5,9 @@ import "./style.css";
 const searchField = document.querySelector("#findLocation");
 searchField.addEventListener("input", () => {
   if (searchField.value.length < 2) return;
-  Weather.search(searchField.value).then((searchList) => {
-    console.log(searchList);
+  Weather.search(searchField.value).then((list) => {
+    console.log(list);
+    searchList.update(list);
   });
 });
 

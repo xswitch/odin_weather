@@ -69,9 +69,12 @@ body {
 
 .searchList {
   position: fixed;
-  height: 50px;
+  height: max-content;
   width: 50px;
-  background-color: black;
+  background-color: rgba(100, 100, 100, 0.4);
+  display: grid;
+  grid-auto-rows: 50px;
+  gap: 2px;
 }
 
 #findLocation {
