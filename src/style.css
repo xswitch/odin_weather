@@ -37,14 +37,13 @@ body {
   left: 0;
   backdrop-filter: blur(20px);
   background-color: rgba(100, 100, 100, 0.2);
-
+  z-index: -1;
 }
 
 .dailyTemp,
 .dailyInfo,
 .forecast,
 .header {
-  backdrop-filter: blur(10px);
   display: grid;
   border-radius: 5px;
 }
@@ -68,9 +67,11 @@ body {
   padding: 1rem;
 }
 
-.searchContainer {
-  border-bottom: 1px solid white;
-  padding: 5px;
+.searchList {
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  background-color: black;
 }
 
 #findLocation {
@@ -80,10 +81,12 @@ body {
   background-position: left;
   background-repeat: no-repeat;
   border: none;
-  height: 25px;
+  height: 100%;
   font-size: 20px;
   text-align: center;
   width: 300px;
+  padding: 5px;
+  border-bottom: 1px solid white;
 }
 
 #findLocation:focus {

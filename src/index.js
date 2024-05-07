@@ -1,3 +1,4 @@
+import searchList from "./modules/searchList";
 import Weather from "./modules/weather";
 import "./style.css";
 
@@ -17,3 +18,9 @@ searchField.addEventListener("keypress", (e) => {
 });
 
 Weather.getWeather();
+
+console.log(searchList.listContainer);
+
+window.onload = function () {
+  searchList.updatePosition();
+};
