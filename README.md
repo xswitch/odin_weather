@@ -4,26 +4,22 @@ TODO
 
 > Get different types of weather, like forecast, current, search, maybe something else
 
-> split them into functions: current(), forecast(), search(),
-
-
-
-> On search, if found get all data and display it.
->> Search
->>> get forecast and current
-
-
 >Search
 > main search function split 
 >> get dropdown of top 5 choices - Use dropdown module
 >> Show current
 >>> on click choose that one, on enter choose top one
 
-> Send half for forecast/ hourly / daily / details and a more menu
-
-
-function for changing tab - save button to variable - check if pressed button = variable, if not change and change class of previous active and new active.
-function for displaying daily
 function for displaying details
-add a more menu
-Create arrows for scrolling through hourly
+add a more menu or just a button to toggle C and F
+
+Create arrows for scrolling through hourly and daily
+
+
+Get 24 hours in hourly, so get from next day whatever's missing
+check length of array and subtract 23 with it.(23-array.length)
+Slice next day array from 0 to result
+
+
+Make days clickable, to get more info
+Could do the same with every hour of current day.

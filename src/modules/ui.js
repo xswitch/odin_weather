@@ -14,6 +14,21 @@ class UI {
     "Saturday",
   ];
 
+  month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
   activeTab;
 
   constructor() {
@@ -69,7 +84,7 @@ class UI {
   updateUI(currentData, forecastData) {
     this.cityName.textContent = currentData.name;
     this.regionCountryName.textContent = `${currentData.region}, ${currentData.country}`;
-    this.currentDate.textContent = `${this.todaysDate.toLocaleDateString()}`;
+    this.currentDate.textContent = `${this.month[this.todaysDate.getMonth()]} ${this.todaysDate.getDate()}, ${this.todaysDate.getFullYear()}`;
     this.currentConditionIcon.src = currentData.condition.icon;
     this.currentConditionText.textContent = currentData.condition.text;
     this.currentTemp.textContent = `${Math.round(currentData.temp_c)}°`;
