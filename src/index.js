@@ -4,7 +4,10 @@ import "./style.css";
 
 const searchField = document.querySelector("#findLocation");
 searchField.addEventListener("input", () => {
-  if (searchField.value.length < 2) return;
+  if (searchField.value.length < 2) {
+    searchList.update([]);
+    return;
+  }
   Weather.search(searchField.value).then((list) => {
     console.log(list);
     searchList.update(list);

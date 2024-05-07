@@ -14,12 +14,28 @@ const searchList = (() => {
     const card = new El("div", {
       classes: "searchResult",
       parent: listContainer,
+    }).element;
+
+    const city = new El("h3", {
+      classes: "searchResultText",
+      parent: card,
+      text: `${entryData.name}`,
+    });
+    const regionCountry = new El("h3", {
+      classes: "searchResultCountry",
+      parent: card,
+      text: `${entryData.region}, ${entryData.country}`,
     });
   }
 
-  function clearList() {}
+  function clearList() {
+    while (listContainer.firstChild) {
+      listContainer.removeChild(listContainer.lastChild);
+    }
+  }
 
   function update(list) {
+    clearList();
     list.forEach((entry) => {
       addEntry(entry);
     });
