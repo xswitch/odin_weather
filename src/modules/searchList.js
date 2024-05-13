@@ -4,6 +4,7 @@ import Weather from "./weather";
 const searchList = (() => {
   const listContainer = document.querySelector(".searchList");
   const searchField = document.querySelector("#findLocation");
+  let topResult;
 
   function updatePosition() {
     const { y, height, width } = searchField.getBoundingClientRect();
@@ -43,12 +44,17 @@ const searchList = (() => {
 
   function update(list) {
     clearList();
-    list.forEach((entry) => {
+    list.forEach((entry, index) => {
+      if (index === 0) topResult = entry;
       addEntry(entry);
     });
   }
 
-  return { updatePosition, update };
+  function getTopResult() {
+    return topResult;
+  }
+
+  return { updatePosition, update, clearList, getTopResult };
 })();
 
 export default searchList;

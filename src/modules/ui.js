@@ -75,6 +75,7 @@ class UI {
         this.createDaily(Weather.getData().forecastWeather);
         break;
       case "Details":
+        this.createDetails(Weather.getData());
         break;
       default:
         break;
@@ -115,6 +116,142 @@ class UI {
     data.forEach((day) => {
       this.dailyCard(day);
     });
+  }
+
+  createDetails(data) {
+    console.log(data);
+    const columns = [
+      new El("div", { parent: this.forecastDisplay, classes: "detailsColumn" })
+        .element,
+      new El("div", { parent: this.forecastDisplay, classes: "detailsColumn" })
+        .element,
+      new El("div", { parent: this.forecastDisplay, classes: "detailsColumn" })
+        .element,
+    ];
+    const text = {
+      temp: new El("h3", {
+        classes: "detailsText",
+        text: `Temperature`,
+        parent: columns[0],
+      }),
+      feelsLike: new El("h3", {
+        classes: "detailsText",
+        text: `Feels like`,
+        parent: columns[0],
+      }),
+      wind: new El("h3", {
+        classes: "detailsText",
+        text: `Wind`,
+        parent: columns[0],
+      }),
+      gust: new El("h3", {
+        classes: "detailsText",
+        text: `Gust`,
+        parent: columns[0],
+      }),
+      maxTemp: new El("h3", {
+        classes: "detailsText",
+        text: `Maximum temperature`,
+        parent: columns[1],
+      }),
+      minTemp: new El("h3", {
+        classes: "detailsText",
+        text: `Minimum temperature`,
+        parent: columns[1],
+      }),
+      averageTemp: new El("h3", {
+        classes: "detailsText",
+        text: `Average temperature`,
+        parent: columns[1],
+      }),
+      chanceOfRain: new El("h3", {
+        classes: "detailsText",
+        text: `Chance of rain`,
+        parent: columns[1],
+      }),
+      moonRise: new El("h3", {
+        classes: "detailsText",
+        text: `Moonrise`,
+        parent: columns[2],
+      }),
+      moonSet: new El("h3", {
+        classes: "detailsText",
+        text: `Moonset`,
+        parent: columns[2],
+      }),
+      sunRise: new El("h3", {
+        classes: "detailsText",
+        text: `Sunrise`,
+        parent: columns[2],
+      }),
+      sunSet: new El("h3", {
+        classes: "detailsText",
+        text: `Sunset`,
+        parent: columns[2],
+      }),
+    };
+    const info = {
+      temp: new El("h3", {
+        classes: "detailsText",
+        text: `${Math.round(data.currentWeather.temp_c)}°`,
+        parent: columns[0],
+      }),
+      feelsLike: new El("h3", {
+        classes: "detailsText",
+        text: `${Math.round(data.currentWeather.feelslike_c)}°`,
+        parent: columns[0],
+      }),
+      wind: new El("h3", {
+        classes: "detailsText",
+        text: `${Math.round(data.currentWeather.wind_kph / 3.6)} m/s`,
+        parent: columns[0],
+      }),
+      gust: new El("h3", {
+        classes: "detailsText",
+        text: `${Math.round(data.currentWeather.gust_kph / 3.6)} m/s`,
+        parent: columns[0],
+      }),
+      maxTemp: new El("h3", {
+        classes: "detailsText",
+        text: `${Math.round(data.forecastWeather[0].maxtemp_c)}°`,
+        parent: columns[1],
+      }),
+      minTemp: new El("h3", {
+        classes: "detailsText",
+        text: `${Math.round(data.forecastWeather[0].mintemp_c)}°`,
+        parent: columns[1],
+      }),
+      averageTemp: new El("h3", {
+        classes: "detailsText",
+        text: `${Math.round(data.forecastWeather[0].avgtemp_c)}°`,
+        parent: columns[1],
+      }),
+      chanceOfRain: new El("h3", {
+        classes: "detailsText",
+        text: `${Math.round(data.forecastWeather[0].daily_chance_of_rain)}%`,
+        parent: columns[1],
+      }),
+      moonRise: new El("h3", {
+        classes: "detailsText",
+        text: `${data.forecastWeather[0].moonrise}`,
+        parent: columns[2],
+      }),
+      moonSet: new El("h3", {
+        classes: "detailsText",
+        text: `${data.forecastWeather[0].moonset}`,
+        parent: columns[2],
+      }),
+      sunRise: new El("h3", {
+        classes: "detailsText",
+        text: `${data.forecastWeather[0].sunrise}`,
+        parent: columns[2],
+      }),
+      sunSet: new El("h3", {
+        classes: "detailsText",
+        text: `${data.forecastWeather[0].sunset}`,
+        parent: columns[2],
+      }),
+    };
   }
 
   dailyCard(dayData) {

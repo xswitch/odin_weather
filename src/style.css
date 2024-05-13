@@ -78,13 +78,13 @@ body {
 }
 
 .searchResult {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid lightblue;
   color: black;
   padding: 5px;
   height: 100%;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -283,6 +283,23 @@ body {
   height: max-content;
 }
 /* FORECAST END */
+/* DETAILS */
+.forecastDisplay.details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+}
+
+.detailsColumn {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  place-items: center;
+  grid-auto-flow: column;
+}
+
+
+/* DETAILS END */
 
 ::-webkit-scrollbar {
   width: 2px;

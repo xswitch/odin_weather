@@ -17,6 +17,8 @@ searchField.addEventListener("input", () => {
 searchField.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     Weather.getWeather();
+    searchField.value = searchList.getTopResult().name;
+    searchList.clearList();
     e.preventDefault();
   }
 });
@@ -25,6 +27,6 @@ Weather.getWeather();
 
 console.log(searchList.listContainer);
 
-window.onload = function () {
+window.onload = () => {
   searchList.updatePosition();
 };
