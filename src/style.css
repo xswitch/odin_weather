@@ -247,7 +247,7 @@ body {
 }
 
 .cardTemp {
-  font-size: 64px;
+  font-size: 48px;
   font-weight: 400;
 }
 
@@ -276,6 +276,7 @@ body {
 .dailyTemp {
   font-size: 30px;
   height: max-content;
+  text-wrap: nowrap;
 }
 
 .dailyTime {
