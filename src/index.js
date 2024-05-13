@@ -3,6 +3,7 @@ import Weather from "./modules/weather";
 import "./style.css";
 
 const searchField = document.querySelector("#findLocation");
+const weatherSwitch = document.querySelector(".switch>input");
 searchField.addEventListener("input", () => {
   if (searchField.value.length < 2) {
     searchList.update([]);
@@ -21,6 +22,10 @@ searchField.addEventListener("keypress", (e) => {
     searchList.clearList();
     e.preventDefault();
   }
+});
+
+weatherSwitch.addEventListener("input", () => {
+  Weather.setTempType(weatherSwitch.checked);
 });
 
 Weather.getWeather();

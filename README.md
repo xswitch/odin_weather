@@ -4,8 +4,6 @@ TODO
 
 > Get different types of weather, like forecast, current, search, maybe something else
 
-add a more menu or just a button to toggle C and F
-
 Create arrows for scrolling through hourly and daily
 
 Make days clickable, to get more info

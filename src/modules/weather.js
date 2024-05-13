@@ -5,6 +5,7 @@ const Weather = (() => {
   let currentWeather = {};
   let forecastWeather = {};
   let hourly;
+  let tempType = "c";
   const fetchTypes = {
     current: "current.json",
     search: "search.json",
@@ -140,6 +141,21 @@ const Weather = (() => {
     return { forecastWeather, currentWeather, hourly };
   }
 
+  function getTempType() {
+    return tempType;
+  }
+
+  function setTempType(state) {
+    if (state) {
+      tempType = "f";
+    } else {
+      tempType = "c";
+    }
+    uiController.currentFormat = tempType;
+    uiController.updateUI(currentWeather, forecastWeather);
+    uiController.changeTab(uiController.hourlyButton, true);
+  }
+
   return {
     current,
     search,
@@ -149,6 +165,8 @@ const Weather = (() => {
     getData,
     setLocation,
     uiController,
+    setTempType,
+    getTempType,
   };
 })();
 
