@@ -4,6 +4,8 @@ import Weather from "./weather";
 class UI {
   todaysDate = new Date();
 
+  currentFormat = "c";
+
   weekday = [
     "Sunday",
     "Monday",
@@ -88,9 +90,9 @@ class UI {
     this.currentDate.textContent = `${this.month[this.todaysDate.getMonth()]} ${this.todaysDate.getDate()}, ${this.todaysDate.getFullYear()}`;
     this.currentConditionIcon.src = currentData.condition.icon;
     this.currentConditionText.textContent = currentData.condition.text;
-    this.currentTemp.textContent = `${Math.round(currentData.temp_c)}°`;
-    this.currentExtremesHigh.textContent = `${Math.round(forecastData[0].maxtemp_c)}°`;
-    this.currentExtremesLow.textContent = `${Math.round(forecastData[0].mintemp_c)}°`;
+    this.currentTemp.textContent = `${Math.round(currentData[`temp_${this.currentFormat}`])}°`;
+    this.currentExtremesHigh.textContent = `${Math.round(forecastData[0][`maxtemp_${this.currentFormat}`])}°`;
+    this.currentExtremesLow.textContent = `${Math.round(forecastData[0][`mintemp_${this.currentFormat}`])}°`;
   }
 
   clearForecastDisplay() {
@@ -193,12 +195,12 @@ class UI {
     const info = {
       temp: new El("h3", {
         classes: "detailsText",
-        text: `${Math.round(data.currentWeather.temp_c)}°`,
+        text: `${Math.round(data.currentWeather[`temp_${this.currentFormat}`])}°`,
         parent: columns[0],
       }),
       feelsLike: new El("h3", {
         classes: "detailsText",
-        text: `${Math.round(data.currentWeather.feelslike_c)}°`,
+        text: `${Math.round(data.currentWeather[`feelslike_${this.currentFormat}`])}°`,
         parent: columns[0],
       }),
       wind: new El("h3", {
@@ -213,17 +215,17 @@ class UI {
       }),
       maxTemp: new El("h3", {
         classes: "detailsText",
-        text: `${Math.round(data.forecastWeather[0].maxtemp_c)}°`,
+        text: `${Math.round(data.forecastWeather[0][`maxtemp_${this.currentFormat}`])}°`,
         parent: columns[1],
       }),
       minTemp: new El("h3", {
         classes: "detailsText",
-        text: `${Math.round(data.forecastWeather[0].mintemp_c)}°`,
+        text: `${Math.round(data.forecastWeather[0][`mintemp_${this.currentFormat}`])}°`,
         parent: columns[1],
       }),
       averageTemp: new El("h3", {
         classes: "detailsText",
-        text: `${Math.round(data.forecastWeather[0].avgtemp_c)}°`,
+        text: `${Math.round(data.forecastWeather[0][`avgtemp_${this.currentFormat}`])}°`,
         parent: columns[1],
       }),
       chanceOfRain: new El("h3", {
@@ -273,7 +275,7 @@ class UI {
     const temp = new El("div", {
       classes: "dailyTemp",
       parent: card,
-      text: `${Math.round(dayData.maxtemp_c)}° / ${Math.round(dayData.mintemp_c)}°`,
+      text: `${Math.round(dayData[`maxtemp_${this.currentFormat}`])}° / ${Math.round(dayData[`mintemp_${this.currentFormat}`])}°`,
     });
     card.addEventListener("click", () => {
       console.log(dayData);
@@ -298,7 +300,7 @@ class UI {
     const cardTemp = new El("div", {
       classes: "cardTemp",
       parent: card.element,
-      text: `${Math.round(hourData.temp_c)}°`,
+      text: `${Math.round(hourData[`temp_${this.currentFormat}`])}°`,
     });
   }
 
