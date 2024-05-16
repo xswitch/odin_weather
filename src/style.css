@@ -401,3 +401,21 @@ body {
   border: 1px solid rgba(0, 128, 128, 0.514);
   transform: translate(1.75em, -50%);
 }
+
+.modal {
+  width: 100dvw;
+  height: 100dvh;
+  left: 0;
+  top: 0;
+  position: absolute;
+  background-color: rgba(200, 200, 200, 0.3);
+  backdrop-filter: blur(5px);
+  display: grid;
+  place-items: center;
+}
+
+.modalContainer {
+  background-color: black;
+  width: 250px;
+  height: 250px;
+}

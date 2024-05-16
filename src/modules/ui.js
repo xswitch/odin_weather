@@ -31,6 +31,8 @@ class UI {
     "December",
   ];
 
+  includedDetails = [];
+
   activeTab;
 
   constructor() {
@@ -279,6 +281,7 @@ class UI {
     });
     card.addEventListener("click", () => {
       console.log(dayData);
+      this.createModal();
     });
   }
 
@@ -309,6 +312,20 @@ class UI {
       index -= 24;
     }
     return String(index).length === 1 ? `0${index}:00` : `${index}:00`;
+  }
+
+  createModal() {
+    const modal = new El("div", {
+      classes: "modal",
+      parent: document.querySelector("body"),
+    }).element;
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.remove();
+    });
+    const modalContainer = new El("div", {
+      classes: "modalContainer",
+      parent: modal,
+    });
   }
 }
 
