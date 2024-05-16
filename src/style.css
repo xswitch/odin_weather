@@ -269,6 +269,10 @@ body {
   gap: 5px;
 }
 
+.dailyCard:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 .dailyCondition {
   width: 100px;
 }
@@ -415,11 +419,16 @@ body {
 }
 
 .modalContainer {
-  background-color: rgba(200, 200, 200, 0.3);
-  width: 250px;
-  height: 250px;
+  background-color: rgba(255, 255, 255, 0.1);
   display: grid;
   grid-template-columns: 3fr 1fr;
-  gap: 5px;
+  gap: 15px;
   justify-items: start;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.modalData {
+  align-self: center;
+  justify-self: center;
 }

@@ -302,6 +302,10 @@ class UI {
       parent: card.element,
       text: `${Math.round(hourData[`temp_${this.currentFormat}`])}°`,
     });
+
+    card.element.addEventListener("click", () => {
+      this.createModal(hourData);
+    });
   }
 
   indexToTime(index) {
@@ -313,30 +317,36 @@ class UI {
 
   createList(data, listParent) {
     const acceptedData = {
+      [`temp_${Weather.getTempType()}`]: "Temperature",
+      [`feelslike_${Weather.getTempType()}`]: "Feels like",
       [`avgtemp_${Weather.getTempType()}`]: "Average Temperature",
       [`maxtemp_${Weather.getTempType()}`]: "Maximum Temperature",
       [`mintemp_${Weather.getTempType()}`]: "Minimum Temperature",
       maxwind_kph: "Max wind",
+      wind_kph: "Wind",
+      gust_kph: "Gust",
       daily_chance_of_rain: "Chance of rain",
       sunrise: "Sunrise",
       sunset: "Sunset",
     };
-    Object.keys(data).forEach((key) => {
-      if (key in acceptedData) {
+    Object.keys(acceptedData).forEach((key) => {
+      if (key in data) {
         const text = new El("h3", {
           classes: "modalText",
           text: acceptedData[key],
           parent: listParent,
         });
         const dataText = new El("h3", {
-          classes: "modalText",
+          classes: "modalText modalData",
           text: data[key],
           parent: listParent,
         });
+        if (key.includes("temp")) dataText.text += "°";
+        if (key.includes("rain")) dataText.text += "%";
+        if (key.includes("wind") || key.includes("gust"))
+          dataText.text = `${Math.round(data[key] / 3.6)} m/s`;
       }
     });
-    console.log(acceptedData);
-    console.log(data);
   }
 
   createModal(data) {
