@@ -31,8 +31,6 @@ class UI {
     "December",
   ];
 
-  includedDetails = [];
-
   activeTab;
 
   constructor() {
@@ -280,8 +278,7 @@ class UI {
       text: `${Math.round(dayData[`maxtemp_${this.currentFormat}`])}° / ${Math.round(dayData[`mintemp_${this.currentFormat}`])}°`,
     });
     card.addEventListener("click", () => {
-      console.log(dayData);
-      this.createModal();
+      this.createModal(dayData);
     });
   }
 
@@ -314,7 +311,35 @@ class UI {
     return String(index).length === 1 ? `0${index}:00` : `${index}:00`;
   }
 
-  createModal() {
+  createList(data, listParent) {
+    const acceptedData = {
+      [`avgtemp_${Weather.getTempType()}`]: "Average Temperature",
+      [`maxtemp_${Weather.getTempType()}`]: "Maximum Temperature",
+      [`mintemp_${Weather.getTempType()}`]: "Minimum Temperature",
+      maxwind_kph: "Max wind",
+      daily_chance_of_rain: "Chance of rain",
+      sunrise: "Sunrise",
+      sunset: "Sunset",
+    };
+    Object.keys(data).forEach((key) => {
+      if (key in acceptedData) {
+        const text = new El("h3", {
+          classes: "modalText",
+          text: acceptedData[key],
+          parent: listParent,
+        });
+        const dataText = new El("h3", {
+          classes: "modalText",
+          text: data[key],
+          parent: listParent,
+        });
+      }
+    });
+    console.log(acceptedData);
+    console.log(data);
+  }
+
+  createModal(data) {
     const modal = new El("div", {
       classes: "modal",
       parent: document.querySelector("body"),
@@ -326,6 +351,7 @@ class UI {
       classes: "modalContainer",
       parent: modal,
     });
+    this.createList(data, modalContainer.element);
   }
 }
 
